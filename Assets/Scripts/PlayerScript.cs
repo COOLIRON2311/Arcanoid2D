@@ -13,6 +13,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
+    SpriteRenderer bg;
 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
@@ -21,6 +22,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
         StartLevel();
     }
 
@@ -65,8 +67,14 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
+    void SetBackGround()
+    {
+        bg.sprite = Resources.Load(level.ToString("d2"), typeof(Sprite)) as Sprite;
+    }
+
     void StartLevel()
     {
+        SetBackGround();
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
         CreateBlocks(bluePrefab, xMax, yMax, level, 8);

@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e4a15824a24e44eaa6023ee5aaf66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 30
   ballVelocityMul: 0.02
   bluePrefab: {fileID: 5928100017837694294, guid: c40c306273d840d47946a804864e8a41, type: 3}
   redPrefab: {fileID: 2256054755192489902, guid: 36293c3426e0e4d46bacd3884e04feae, type: 3}
