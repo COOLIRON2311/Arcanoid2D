@@ -58,11 +58,16 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void BallDestroyed()
+    IEnumerator BallDestroyedCoroutine()
     {
+        yield return new WaitForSeconds(0.1f);
         balls--;
         if (balls == 0)
             CreateBalls();
+    }
+    public void BallDestroyed()
+    {
+        StartCoroutine(BallDestroyedCoroutine());
     }
 
     void CreateBalls()
