@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -8,8 +9,6 @@ public class PlayerScript : MonoBehaviour
     const int maxLevel = 30;
     [Range(1, maxLevel)]
     public int level = 1;
-    [Range(1, 10)]
-    public int InitialBalls = 2;
     public float ballVelocityMul = 0.02f;
     public GameObject bluePrefab;
     public GameObject redPrefab;
@@ -35,7 +34,7 @@ public class PlayerScript : MonoBehaviour
                 gameData.Reset();
         }
         bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
-        balls = InitialBalls;
+        level = gameData.level;
         StartLevel();
     }
 
@@ -78,19 +77,33 @@ public class PlayerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         if (balls == 0)
-            CreateBalls();
+        {
+            if (gameData.balls > 0)
+                CreateBalls();
+            else
+            {
+                gameData.Reset();
+                SceneManager.LoadScene("MainScene");
+            }
+        }
     }
 
     IEnumerator BlockDestroyedCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
         if (blocks == 0)
-            print("Level complete!");
+        {
+            // print("Level complete!");
+            if (level < maxLevel)
+                gameData.level++;
+            SceneManager.LoadScene("MainScene");
+        }
     }
 
     public void BallDestroyed()
     {
         balls--;
+        gameData.balls--;
         StartCoroutine(BallDestroyedCoroutine());
     }
 
@@ -103,8 +116,11 @@ public class PlayerScript : MonoBehaviour
 
     public void CreateBalls()
     {
-        balls = InitialBalls;
-        for (int i = 0; i < balls; i++)
+        int count = 2;
+        if (gameData.balls == 1)
+            count = 1;
+        balls = count;
+        for (int i = 0; i < count; i++)
         {
             var obj = Instantiate(ballPrefab);
             var ball = obj.GetComponent<BallScript>();
