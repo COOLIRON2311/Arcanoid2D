@@ -14,6 +14,9 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
 
+    static Collider2D[] colliders = new Collider2D[50];
+    static ContactFilter2D contactFilter = new ContactFilter2D();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +42,14 @@ public class NewBehaviourScript : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Instantiate(prefab, new Vector3((Random.value * 2 - 1) * xMax, Random.value * yMax, 0), Quaternion.identity);
+            for (int k = 0; k < 20; k++)
+            {
+                var obj = Instantiate(prefab, new Vector3((Random.value * 2 - 1) * xMax, Random.value * yMax, 0), Quaternion.identity);
+                if (obj.GetComponent<Collider2D>().OverlapCollider(contactFilter.NoFilter(), colliders) == 0)
+                    break;
+                Destroy(obj);
+            }
+
         }
     }
 
