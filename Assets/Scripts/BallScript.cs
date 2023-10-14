@@ -50,7 +50,7 @@ public class BallScript : MonoBehaviour
                 {
                     Destroy(b);
                 }
-                ps.CreateBalls();
+                ps.ResetBalls();
             }
         }
     }

@@ -114,13 +114,24 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(BlockDestroyedCoroutine());
     }
 
-    public void CreateBalls()
+    void CreateBalls()
     {
         int count = 2;
         if (gameData.balls == 1)
             count = 1;
         balls = count;
         for (int i = 0; i < count; i++)
+        {
+            var obj = Instantiate(ballPrefab);
+            var ball = obj.GetComponent<BallScript>();
+            ball.ballInitialForce += new Vector2(10 * i, 0);
+            ball.ballInitialForce *= 1 + level * ballVelocityMul;
+        }
+    }
+
+    public void ResetBalls()
+    {
+        for (int i = 0; i < balls; i++)
         {
             var obj = Instantiate(ballPrefab);
             var ball = obj.GetComponent<BallScript>();
