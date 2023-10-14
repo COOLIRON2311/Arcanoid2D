@@ -16,16 +16,24 @@ public class PlayerScript : MonoBehaviour
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
+    public GameDataScript gameData;
     int balls;
     int blocks;
 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
+    static bool gameStarted = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
+        if (!gameStarted)
+        {
+            gameStarted = true;
+            if (gameData.resetOnStart)
+                gameData.Reset();
+        }
         bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
         balls = InitialBalls;
         StartLevel();
@@ -89,7 +97,7 @@ public class PlayerScript : MonoBehaviour
     public void BlockDestroyed(int points)
     {
         blocks--;
-        print(blocks);
+        gameData.points += points;
         StartCoroutine(BlockDestroyedCoroutine());
     }
 
