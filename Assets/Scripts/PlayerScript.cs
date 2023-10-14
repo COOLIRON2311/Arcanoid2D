@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
     int balls;
+    int blocks;
 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
@@ -48,29 +49,51 @@ public class PlayerScript : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            bool found = false;
             for (int k = 0; k < 20; k++)
             {
                 var obj = Instantiate(prefab, new Vector3((Random.value * 2 - 1) * xMax, Random.value * yMax, 0), Quaternion.identity);
                 if (obj.GetComponent<Collider2D>().OverlapCollider(contactFilter.NoFilter(), colliders) == 0)
+                {
+                    found = true;
                     break;
+                }
                 Destroy(obj);
             }
+            if (found)
+                blocks++;
+
         }
     }
 
     IEnumerator BallDestroyedCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
-        balls--;
         if (balls == 0)
             CreateBalls();
     }
+
+    IEnumerator BlockDestroyedCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (blocks == 0)
+            print("Level complete!");
+    }
+
     public void BallDestroyed()
     {
+        balls--;
         StartCoroutine(BallDestroyedCoroutine());
     }
 
-    void CreateBalls()
+    public void BlockDestroyed(int points)
+    {
+        blocks--;
+        print(blocks);
+        StartCoroutine(BlockDestroyedCoroutine());
+    }
+
+    public void CreateBalls()
     {
         balls = InitialBalls;
         for (int i = 0; i < balls; i++)
@@ -89,6 +112,7 @@ public class PlayerScript : MonoBehaviour
 
     void StartLevel()
     {
+        blocks = 0;
         SetBackGround();
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;

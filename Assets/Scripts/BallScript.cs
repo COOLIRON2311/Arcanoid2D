@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -38,6 +39,18 @@ public class BallScript : MonoBehaviour
                 var pos = transform.position;
                 pos.x = playerObj.transform.position.x + dx;
                 transform.position = pos;
+            }
+        }
+        else
+        {
+            // reset balls if they are stuck
+            if (Input.GetKey(KeyCode.Return))
+            {
+                foreach (var b in GameObject.FindGameObjectsWithTag("Ball"))
+                {
+                    Destroy(b);
+                }
+                ps.CreateBalls();
             }
         }
     }

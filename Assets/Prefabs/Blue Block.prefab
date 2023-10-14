@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textObj: {fileID: 0}
-  textComp: {fileID: 0}
   hitsToDestroy: 30
   points: 100
 --- !u!212 &6633097256938786233

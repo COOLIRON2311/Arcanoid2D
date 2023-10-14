@@ -9,6 +9,7 @@ public class BlockScript : MonoBehaviour
     Text textComp;
     public int hitsToDestroy;
     public int points;
+    PlayerScript ps;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class BlockScript : MonoBehaviour
             textComp = textObj.GetComponent<Text>();
             textComp.text = hitsToDestroy.ToString();
         }
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +28,7 @@ public class BlockScript : MonoBehaviour
         {
             // print(points);
             Destroy(gameObject);
+            ps.BlockDestroyed(points);
         }
         else if (textComp != null)
             textComp.text = hitsToDestroy.ToString();
