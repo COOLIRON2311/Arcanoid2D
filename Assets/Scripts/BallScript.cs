@@ -9,6 +9,9 @@ public class BallScript : MonoBehaviour
     public GameObject playerObj;
     public Rigidbody2D rb;
     float dx; // delta x
+    public AudioSource audioSrc;
+    public AudioClip hitSound;
+    public AudioClip loseSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,12 @@ public class BallScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        audioSrc.PlayOneShot(loseSound);
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        audioSrc.PlayOneShot(hitSound);
     }
 }

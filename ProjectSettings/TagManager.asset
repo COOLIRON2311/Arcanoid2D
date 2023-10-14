@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Ball
+  - Block
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Wall
   - Player
   - Ball
-  - 
+  - Block
   - 
   - 
   - 
