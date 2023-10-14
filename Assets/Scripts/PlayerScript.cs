@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
+    SpriteRenderer bg;
     const int maxLevel = 30;
     [Range(1, maxLevel)]
     public int level = 1;
+    [Range(1, 10)]
+    public int InitialBalls = 2;
     public float ballVelocityMul = 0.02f;
     public GameObject bluePrefab;
     public GameObject redPrefab;
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
-    SpriteRenderer bg;
+    int balls;
 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
@@ -23,6 +26,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         Cursor.visible = false;
         bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
+        balls = InitialBalls;
         StartLevel();
     }
 
@@ -51,14 +55,20 @@ public class NewBehaviourScript : MonoBehaviour
                     break;
                 Destroy(obj);
             }
-
         }
+    }
+
+    public void BallDestroyed()
+    {
+        balls--;
+        if (balls == 0)
+            CreateBalls();
     }
 
     void CreateBalls()
     {
-        int count = 2;
-        for (int i = 0; i < count; i++)
+        balls = InitialBalls;
+        for (int i = 0; i < balls; i++)
         {
             var obj = Instantiate(ballPrefab);
             var ball = obj.GetComponent<BallScript>();
