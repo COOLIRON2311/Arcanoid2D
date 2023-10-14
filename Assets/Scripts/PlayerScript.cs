@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
+    public AudioClip pointSound;
     public GameDataScript gameData;
     int balls;
     int blocks;
@@ -35,6 +36,7 @@ public class PlayerScript : MonoBehaviour
         }
         bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
         level = gameData.level;
+        SetMusic();
         StartLevel();
     }
 
@@ -47,6 +49,27 @@ public class PlayerScript : MonoBehaviour
         var pos = transform.position;
         pos.x = mouse_pos.x;
         transform.position = pos;
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            gameData.bgm = !gameData.bgm;
+            SetMusic();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            gameData.sfx = ! gameData.sfx;
+        }
+
+        // reset balls if they are stuck
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            foreach (var b in GameObject.FindGameObjectsWithTag("Ball"))
+            {
+                Destroy(b);
+            }
+            ResetBalls();
+        }
     }
 
     void CreateBlocks(GameObject prefab, float xMax, float yMax, int count, int maxCount)
@@ -111,6 +134,8 @@ public class PlayerScript : MonoBehaviour
     {
         blocks--;
         gameData.points += points;
+        if (gameData.sfx)
+            SoundMaster.instance.sfx.PlayOneShot(pointSound);
         StartCoroutine(BlockDestroyedCoroutine());
     }
 
@@ -143,6 +168,14 @@ public class PlayerScript : MonoBehaviour
     void SetBackGround()
     {
         bg.sprite = Resources.Load(level.ToString("d2"), typeof(Sprite)) as Sprite;
+    }
+
+    void SetMusic()
+    {
+        if (gameData.bgm)
+            SoundMaster.instance.bgm.Play();
+        else
+            SoundMaster.instance.bgm.Stop();
     }
 
     void StartLevel()

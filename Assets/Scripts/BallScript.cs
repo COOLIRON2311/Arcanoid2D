@@ -11,9 +11,9 @@ public class BallScript : MonoBehaviour
     PlayerScript ps;
     Rigidbody2D rb;
     float dx; // delta x
-    AudioSource audioSrc;
     public AudioClip hitSound;
     public AudioClip loseSound;
+    public GameDataScript gameData;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,6 @@ public class BallScript : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         ps = playerObj.GetComponent<PlayerScript>();
         dx = transform.position.x;
-        audioSrc = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,29 +40,19 @@ public class BallScript : MonoBehaviour
                 transform.position = pos;
             }
         }
-        else
-        {
-            // reset balls if they are stuck
-            if (Input.GetKey(KeyCode.Return))
-            {
-                foreach (var b in GameObject.FindGameObjectsWithTag("Ball"))
-                {
-                    Destroy(b);
-                }
-                ps.ResetBalls();
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        audioSrc.PlayOneShot(loseSound);
+        if (gameData.sfx)
+            SoundMaster.instance.sfx.PlayOneShot(loseSound);
         Destroy(gameObject);
         ps.BallDestroyed();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        audioSrc.PlayOneShot(hitSound);
+        if (gameData.sfx)
+            SoundMaster.instance.sfx.PlayOneShot(hitSound);
     }
 }

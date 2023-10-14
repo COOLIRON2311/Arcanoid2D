@@ -50,6 +50,7 @@ MonoBehaviour:
   ballInitialForce: {x: 100, y: 300}
   hitSound: {fileID: 8300000, guid: 0f93f2cd545c504468abbd597570e8c6, type: 3}
   loseSound: {fileID: 8300000, guid: 57e96f096b618df47a6da85bf555755a, type: 3}
+  gameData: {fileID: 11400000, guid: 82c749a84387cfc4088e358ffbb5f6ef, type: 2}
 --- !u!212 &772568349399271405
 SpriteRenderer:
   m_ObjectHideFlags: 0

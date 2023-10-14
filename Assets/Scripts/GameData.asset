@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   resetOnStart: 0
+  bgm: 1
+  sfx: 1
   level: 1
   balls: 6
   points: 0

@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameDataScript : ScriptableObject
 {
     public bool resetOnStart;
+    public bool bgm = true;
+    public bool sfx = true;
     public int level = 1;
     public int balls = 6;
     public int points = 0;
