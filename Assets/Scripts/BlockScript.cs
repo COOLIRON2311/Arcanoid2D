@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BlockScript : MonoBehaviour
 {
     public GameObject textObj;
-    public Text textComp;
+    Text textComp;
     public int hitsToDestroy;
     public int points;
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class BlockScript : MonoBehaviour
     {
         if (textObj != null)
         {
-            // textComp = textObj.GetComponent<Text>();
+            textComp = textObj.GetComponent<Text>();
             textComp.text = hitsToDestroy.ToString();
         }
     }

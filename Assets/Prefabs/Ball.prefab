@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7215961917484994060}
-  - component: {fileID: 772568349399271405}
   - component: {fileID: 5458270593875925946}
+  - component: {fileID: 772568349399271405}
   - component: {fileID: 6101920321051479396}
   - component: {fileID: 6263059708684892275}
   m_Layer: 8
@@ -35,6 +35,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5458270593875925946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922678694551479059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef28a5031e377de4d86b50a4a6cd2db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballInitialForce: {x: 100, y: 300}
+  hitSound: {fileID: 8300000, guid: 0f93f2cd545c504468abbd597570e8c6, type: 3}
+  loseSound: {fileID: 8300000, guid: 57e96f096b618df47a6da85bf555755a, type: 3}
 --- !u!212 &772568349399271405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,24 +102,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5458270593875925946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922678694551479059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef28a5031e377de4d86b50a4a6cd2db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballInitialForce: {x: 100, y: 300}
-  playerObj: {fileID: 0}
-  rb: {fileID: 6263059708684892275}
-  audioSrc: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: 0f93f2cd545c504468abbd597570e8c6, type: 3}
-  loseSound: {fileID: 8300000, guid: 57e96f096b618df47a6da85bf555755a, type: 3}
 --- !u!58 &6101920321051479396
 CircleCollider2D:
   m_ObjectHideFlags: 0

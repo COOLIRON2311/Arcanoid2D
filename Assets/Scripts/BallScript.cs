@@ -6,18 +6,19 @@ using UnityEngine.PlayerLoop;
 public class BallScript : MonoBehaviour
 {
     public Vector2 ballInitialForce;
-    public GameObject playerObj;
-    public Rigidbody2D rb;
+    GameObject playerObj;
+    Rigidbody2D rb;
     float dx; // delta x
-    public AudioSource audioSrc;
+    AudioSource audioSrc;
     public AudioClip hitSound;
     public AudioClip loseSound;
     // Start is called before the first frame update
     void Start()
     {
-        // rb = GetComponent<Rigidbody2D>();
-        // playerObj = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
         dx = transform.position.x;
+        audioSrc = Camera.main.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
