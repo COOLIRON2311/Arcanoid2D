@@ -247,6 +247,11 @@ public class PlayerScript : MonoBehaviour
         CreateBalls();
     }
 
+    string OnOff(bool boolVal)
+    {
+        return boolVal ? "on" : "off";
+    }
+
     void OnGUI()
     {
         if (Time.timeScale > 0)
@@ -258,6 +263,19 @@ public class PlayerScript : MonoBehaviour
                 gameData.level, gameData.balls, gameData.points
                 )
             );
+
+            GUIStyle style = new GUIStyle { alignment = TextAnchor.UpperRight };
+            GUI.Label(new Rect(5, 14, Screen.width - 10, 100), string.Format(
+              "<color=yellow><size=20><color=white>Space</color>-pause {0}" +
+              " <color=white>N</color>-new" +
+              " <color=white>J</color>-jump" +
+              " <color=white>M</color>-music {1}" +
+              " <color=white>S</color>-sound {2}" +
+              " <color=white>Esc</color>-exit</size></color>",
+              OnOff(Time.timeScale > 0),
+              OnOff(!gameData.bgm),
+              OnOff(!gameData.sfx)
+            ), style);
         }
         else
         {
