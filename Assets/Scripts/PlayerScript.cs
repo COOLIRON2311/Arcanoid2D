@@ -89,6 +89,20 @@ public class PlayerScript : MonoBehaviour
                 SoundMaster.instance.bgm.Play();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            gameData.Reset();
+            SceneManager.LoadScene("MainScene");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        }
     }
 
     void CreateBlocks(GameObject prefab, float xMax, float yMax, int count, int maxCount)
