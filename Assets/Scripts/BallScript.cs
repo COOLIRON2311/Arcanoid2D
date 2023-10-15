@@ -13,7 +13,7 @@ public class BallScript : MonoBehaviour
     float dx; // delta x
     public AudioClip hitSound;
     public AudioClip loseSound;
-    public GameDataScript gameData;
+    GameDataScript gameData;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,7 @@ public class BallScript : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         ps = playerObj.GetComponent<PlayerScript>();
         dx = transform.position.x;
+        gameData = GameDataObject.instance.GameData;
     }
 
     // Update is called once per frame

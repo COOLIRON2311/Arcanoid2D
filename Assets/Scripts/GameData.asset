@@ -17,4 +17,5 @@ MonoBehaviour:
   sfx: 1
   level: 1
   balls: 6
-  points: 0
+  points: 150
+  pointsToBall: 130

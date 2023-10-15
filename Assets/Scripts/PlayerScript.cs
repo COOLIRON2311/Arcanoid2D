@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
     public AudioClip pointSound;
-    public GameDataScript gameData;
+    GameDataScript gameData;
     int balls;
     int blocks;
 
@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        gameData = GameDataObject.instance.GameData;
         if (!gameStarted)
         {
             gameStarted = true;
@@ -58,7 +59,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            gameData.sfx = ! gameData.sfx;
+            gameData.sfx = !gameData.sfx;
         }
 
         // reset balls if they are stuck
@@ -123,6 +124,16 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    IEnumerator BlockDestroyedCoroutine2()
+    {
+        const int times = 5;
+        for (int i = 0; i < times; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            SoundMaster.instance.sfx.PlayOneShot(pointSound);
+        }
+    }
+
     public void BallDestroyed()
     {
         balls--;
@@ -130,10 +141,23 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(BallDestroyedCoroutine());
     }
 
+    int requiredPointsToBall
+    {
+        get { return 400 + (level - 1) * 20; }
+    }
+
     public void BlockDestroyed(int points)
     {
         blocks--;
         gameData.points += points;
+        gameData.pointsToBall += points;
+        if (gameData.pointsToBall >= requiredPointsToBall)
+        {
+            gameData.balls++;
+            gameData.pointsToBall -= requiredPointsToBall;
+            if (gameData.sfx)
+                StartCoroutine(BlockDestroyedCoroutine2());
+        }
         if (gameData.sfx)
             SoundMaster.instance.sfx.PlayOneShot(pointSound);
         StartCoroutine(BlockDestroyedCoroutine());

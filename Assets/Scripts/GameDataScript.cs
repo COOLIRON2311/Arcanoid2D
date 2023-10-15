@@ -11,11 +11,13 @@ public class GameDataScript : ScriptableObject
     public int level = 1;
     public int balls = 6;
     public int points = 0;
+    public int pointsToBall = 0;
 
     public void Reset()
     {
         level = 1;
         balls = 6;
         points = 0;
+        pointsToBall = 0;
     }
 }
