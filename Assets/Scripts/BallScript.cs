@@ -39,6 +39,15 @@ public class BallScript : MonoBehaviour
                 pos.x = playerObj.transform.position.x + dx;
                 transform.position = pos;
             }
+        } // change ball trajectory if it became stable
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            var v = rb.velocity;
+            if (Random.Range(0, 2) == 0)
+                v.Set(v.x - 0.1f, v.y + 0.1f);
+            else
+                v.Set(v.x + 0.1f, v.y - 0.1f);
+            rb.velocity = v;
         }
     }
 

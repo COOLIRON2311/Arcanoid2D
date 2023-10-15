@@ -62,7 +62,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         // reset balls if they are stuck
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             foreach (var b in GameObject.FindGameObjectsWithTag("Ball"))
             {
