@@ -44,12 +44,15 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // if (mouse_pos.x < -7.1 || 7.1 < mouse_pos.x)
-        //     return;
-        var pos = transform.position;
-        pos.x = mouse_pos.x;
-        transform.position = pos;
+        if (Time.timeScale > 0)
+        {
+            var mouse_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // if (mouse_pos.x < -7.1 || 7.1 < mouse_pos.x)
+            //     return;
+            var pos = transform.position;
+            pos.x = mouse_pos.x;
+            transform.position = pos;
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -70,6 +73,21 @@ public class PlayerScript : MonoBehaviour
                 Destroy(b);
             }
             ResetBalls();
+        }
+
+        // pause
+        if (Input.GetButtonDown("Pause"))
+        {
+            if (Time.timeScale > 0)
+            { // pause game
+                Time.timeScale = 0;
+                SoundMaster.instance.bgm.Pause();
+            }
+            else
+            { // resume game
+                Time.timeScale = 1;
+                SoundMaster.instance.bgm.Play();
+            }
         }
     }
 
@@ -217,12 +235,22 @@ public class PlayerScript : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(5, 4, Screen.width - 10, 100),
+        if (Time.timeScale > 0)
+        {
+            GUI.Label(new Rect(5, 4, Screen.width - 10, 100),
             string.Format(
                 "<color=yellow><size=30>Level <b>{0}</b>  Balls <b>{1}</b>" +
                 "  Score <b>{2}</b></size></color>",
                 gameData.level, gameData.balls, gameData.points
-            )
-        );
+                )
+            );
+        }
+        else
+        {
+            GUI.Label(new Rect(5, 4, Screen.width - 10, 100),
+                "<color=yellow><size=30>Game <b>Paused</b></size></color>"
+            );
+        }
+
     }
 }
