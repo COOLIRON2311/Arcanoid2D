@@ -32,8 +32,8 @@ public class PlayerScript : MonoBehaviour
         if (!gameStarted)
         {
             gameStarted = true;
-            if (gameData.resetOnStart)
-                gameData.Reset();
+            if (gameData.restoreOnStart)
+                gameData.Load();
         }
         bg = GameObject.Find("Background").GetComponent<SpriteRenderer>();
         level = gameData.level;
@@ -252,5 +252,10 @@ public class PlayerScript : MonoBehaviour
             );
         }
 
+    }
+
+    void OnApplicationQuit()
+    {
+        gameData.Save();
     }
 }
