@@ -29,14 +29,15 @@ public class GameDataScript : ScriptableObject
         PlayerPrefs.SetInt("pointsToBall", pointsToBall);
         PlayerPrefs.SetInt("bgm", bgm ? 1 : 0);
         PlayerPrefs.SetInt("sfx", sfx ? 1 : 0);
+        PlayerPrefs.Save(); // just in case
     }
 
     public void Load()
     {
-        level = PlayerPrefs.GetInt("level");
-        balls = PlayerPrefs.GetInt("balls");
-        points = PlayerPrefs.GetInt("points");
-        pointsToBall = PlayerPrefs.GetInt("pointsToBall");
+        level = PlayerPrefs.GetInt("level", 1);
+        balls = PlayerPrefs.GetInt("balls", 6);
+        points = PlayerPrefs.GetInt("points", 0);
+        pointsToBall = PlayerPrefs.GetInt("pointsToBall", 0);
         bgm = PlayerPrefs.GetInt("bgm", 1) == 1;
         sfx = PlayerPrefs.GetInt("sfx", 1) == 1;
     }
