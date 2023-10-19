@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BlockScript : MonoBehaviour
 {
     public GameObject textObj;
+    public bool registerDestroyed = true;
     Text textComp;
     public int hitsToDestroy;
     public int points;
@@ -28,7 +29,7 @@ public class BlockScript : MonoBehaviour
         {
             // print(points);
             Destroy(gameObject);
-            ps.BlockDestroyed(points);
+            ps.BlockDestroyed(points, registerDestroyed);
         }
         else if (textComp != null)
             textComp.text = hitsToDestroy.ToString();

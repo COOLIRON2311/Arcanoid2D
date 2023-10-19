@@ -105,8 +105,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void CreateBlocks(GameObject prefab, float xMax, float yMax, int count, int maxCount)
+    int CreateBlocks(GameObject prefab, float xMax, float yMax, int count, int maxCount)
     {
+        int blocks_created = 0;
         if (count > maxCount)
             count = maxCount;
 
@@ -124,9 +125,9 @@ public class PlayerScript : MonoBehaviour
                 Destroy(obj);
             }
             if (found)
-                blocks++;
-
+                blocks_created++;
         }
+        return blocks_created;
     }
 
     IEnumerator BallDestroyedCoroutine()
@@ -178,9 +179,10 @@ public class PlayerScript : MonoBehaviour
         get { return 400 + (level - 1) * 20; }
     }
 
-    public void BlockDestroyed(int points)
+    public void BlockDestroyed(int points, bool registerDestroyed)
     {
-        blocks--;
+        if (registerDestroyed)
+            blocks--;
         gameData.points += points;
         gameData.pointsToBall += points;
         if (gameData.pointsToBall >= requiredPointsToBall)
@@ -241,9 +243,9 @@ public class PlayerScript : MonoBehaviour
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
         CreateBlocks(bluePrefab, xMax, yMax, level, 8);
-        CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
-        CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
-        CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
+        blocks += CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
+        blocks += CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
+        blocks += CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
         CreateBalls();
     }
 
