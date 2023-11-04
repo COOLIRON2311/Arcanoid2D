@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1110030861237467775}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textObj: {fileID: 2163033212973730432}
-  textComp: {fileID: 5125252487409633378}
+  registerDestroyed: 1
   hitsToDestroy: 2
   points: 20
 --- !u!212 &801743939505092101

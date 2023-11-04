@@ -1138,6 +1138,7 @@ MonoBehaviour:
   level: 1
   ballVelocityMul: 0.02
   bluePrefab: {fileID: 5928100017837694294, guid: c40c306273d840d47946a804864e8a41, type: 3}
+  extraBluePrefab: {fileID: 7418070584134189103, guid: fd620337ec22af943aa661a4dee7891c, type: 3}
   redPrefab: {fileID: 2256054755192489902, guid: 36293c3426e0e4d46bacd3884e04feae, type: 3}
   greenPrefab: {fileID: 1110030861237467775, guid: 204a42ae0b26e8f43a3afd6b93b3b4b2, type: 3}
   yellowPrefab: {fileID: 420286691323532324, guid: 6e5218df4285e2b418c86d991030b589, type: 3}

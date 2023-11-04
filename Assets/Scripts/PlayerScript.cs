@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public int level = 1;
     public float ballVelocityMul = 0.02f;
     public GameObject bluePrefab;
+    public GameObject extraBluePrefab;
     public GameObject redPrefab;
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
@@ -130,6 +131,29 @@ public class PlayerScript : MonoBehaviour
         return blocks_created;
     }
 
+    void CreateExtraBlocks(GameObject prefab, float xMax, float yMax, int count, int maxCount)
+    {
+        if (count > maxCount)
+            count = maxCount;
+        for (int i = 0; i < count; i++)
+        {
+            for (int k = 0; k < 20; k++)
+            {
+                var obj = Instantiate(prefab, new Vector3((Random.value * 2 - 1) * xMax, Random.value * yMax, 0), Quaternion.identity);
+                var s = obj.GetComponent<ExtraBlockScript>();
+
+                if (obj.GetComponent<Collider2D>().OverlapCollider(contactFilter.NoFilter(), colliders) == 0)
+                {
+                    var (x1, y1, x2, y2) = (Random.value, Random.value, Random.value, Random.value);
+                    s.p1 = new Vector2(-x1 * xMax, (y1 - 0.5f) * yMax);
+                    s.p2 = new Vector2(x2 * xMax, (y2 - 0.5f) * yMax);
+                    break;
+                }
+                Destroy(obj);
+            }
+        }
+    }
+
     IEnumerator BallDestroyedCoroutine()
     {
         yield return new WaitForSeconds(0.1f);
@@ -242,7 +266,8 @@ public class PlayerScript : MonoBehaviour
         SetBackGround();
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
-        CreateBlocks(bluePrefab, xMax, yMax, level, 8);
+        CreateBlocks(bluePrefab, xMax, yMax, level / 2, 8);
+        CreateExtraBlocks(extraBluePrefab, xMax, yMax, level / 2, 8);
         blocks += CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
         blocks += CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
         blocks += CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);

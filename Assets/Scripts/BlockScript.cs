@@ -12,7 +12,7 @@ public class BlockScript : MonoBehaviour
     public int points;
     PlayerScript ps;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         if (textObj != null)
         {
@@ -28,16 +28,10 @@ public class BlockScript : MonoBehaviour
         if (hitsToDestroy == 0)
         {
             // print(points);
-            Destroy(gameObject);
             ps.BlockDestroyed(points, registerDestroyed);
+            Destroy(gameObject);
         }
         else if (textComp != null)
             textComp.text = hitsToDestroy.ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
