@@ -52,7 +52,7 @@ MonoBehaviour:
   hitsToDestroy: 2
   points: 20
   bonuses:
-  - {fileID: 305381268660114014, guid: dd9e176fe89239d4196dc6865b8718ff, type: 3}
+  - {fileID: 5635594520570490885, guid: 28d80936b50d290468ac7650ae18706a, type: 3}
 --- !u!212 &801743939505092101
 SpriteRenderer:
   m_ObjectHideFlags: 0

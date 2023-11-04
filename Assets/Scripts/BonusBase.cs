@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BonusBase : MonoBehaviour
 {
     public float bonusSpeed = 2f;
     Rigidbody2D rb2d;
     GameDataScript gameData;
+    protected PlayerScript playerScript;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         gameData = GameDataObject.instance.GameData;
         StartCoroutine(SmoothMovementDown());
+    }
+
+    public void SetPlayerScript(PlayerScript playerScript)
+    {
+        this.playerScript = playerScript;
     }
 
     IEnumerator SmoothMovementDown()

@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour
     GameDataScript gameData;
     int balls;
     int blocks;
+    [HideInInspector]
+    public List<GameObject> currentBalls = new List<GameObject>();
 
     static Collider2D[] colliders = new Collider2D[50];
     static ContactFilter2D contactFilter = new ContactFilter2D();
@@ -198,6 +200,11 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(BallDestroyedCoroutine());
     }
 
+    public void RemoveBallFromList(GameObject ball)
+    {
+        currentBalls.Remove(ball);
+    }
+
     int requiredPointsToBall
     {
         get { return 400 + (level - 1) * 20; }
@@ -233,6 +240,7 @@ public class PlayerScript : MonoBehaviour
             var ball = obj.GetComponent<BallScript>();
             ball.ballInitialForce += new Vector2(10 * i, 0);
             ball.ballInitialForce *= 1 + level * ballVelocityMul;
+            currentBalls.Add(obj);
         }
     }
 

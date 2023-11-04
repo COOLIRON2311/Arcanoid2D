@@ -56,6 +56,7 @@ public class BallScript : MonoBehaviour
     {
         if (gameData.sfx)
             SoundMaster.instance.sfx.PlayOneShot(loseSound);
+        ps.RemoveBallFromList(gameObject);
         Destroy(gameObject);
         ps.BallDestroyed();
     }

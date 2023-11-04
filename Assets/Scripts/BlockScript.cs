@@ -34,7 +34,8 @@ public class BlockScript : MonoBehaviour
             if (bonuses.Length > 0)
             {
                 var bonus = bonuses[Random.Range(0, bonuses.Length - 1)];
-                Instantiate(bonus, gameObject.transform.position, Quaternion.identity);
+                var obj = Instantiate(bonus, gameObject.transform.position, Quaternion.identity);
+                obj.GetComponent<BonusBase>().SetPlayerScript(ps);
             }
         }
         else if (textComp != null)
