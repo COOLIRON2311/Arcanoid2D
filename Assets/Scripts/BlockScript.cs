@@ -11,6 +11,7 @@ public class BlockScript : MonoBehaviour
     public int hitsToDestroy;
     public int points;
     PlayerScript ps;
+    public GameObject[] bonuses;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -30,6 +31,11 @@ public class BlockScript : MonoBehaviour
             // print(points);
             ps.BlockDestroyed(points, registerDestroyed);
             Destroy(gameObject);
+            if (bonuses.Length > 0)
+            {
+                var bonus = bonuses[Random.Range(0, bonuses.Length - 1)];
+                Instantiate(bonus, gameObject.transform.position, Quaternion.identity);
+            }
         }
         else if (textComp != null)
             textComp.text = hitsToDestroy.ToString();
