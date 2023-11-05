@@ -9,7 +9,7 @@ public class SlowBonusScript : BonusBase
         foreach (var ballObject in playerScript.currentBalls)
         {
             var rb2d = ballObject.GetComponent<Rigidbody2D>();
-            rb2d.velocity *= 0.5f;
+            rb2d.velocity *= 0.9f;
         }
     }
 }

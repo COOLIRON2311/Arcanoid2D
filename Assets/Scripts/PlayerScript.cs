@@ -71,6 +71,7 @@ public class PlayerScript : MonoBehaviour
         // reset balls if they are stuck
         if (Input.GetKeyDown(KeyCode.R))
         {
+            currentBalls.Clear();
             foreach (var b in GameObject.FindGameObjectsWithTag("Ball"))
             {
                 Destroy(b);
@@ -252,6 +253,7 @@ public class PlayerScript : MonoBehaviour
             var ball = obj.GetComponent<BallScript>();
             ball.ballInitialForce += new Vector2(10 * i, 0);
             ball.ballInitialForce *= 1 + level * ballVelocityMul;
+            currentBalls.Add(obj);
         }
     }
 

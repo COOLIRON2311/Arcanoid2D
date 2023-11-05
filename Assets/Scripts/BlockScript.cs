@@ -33,7 +33,7 @@ public class BlockScript : MonoBehaviour
             Destroy(gameObject);
             if (bonuses.Length > 0)
             {
-                var bonus = bonuses[Random.Range(0, bonuses.Length - 1)];
+                var bonus = bonuses[Random.Range(0, bonuses.Length)];
                 var obj = Instantiate(bonus, gameObject.transform.position, Quaternion.identity);
                 obj.GetComponent<BonusBase>().SetPlayerScript(ps);
             }

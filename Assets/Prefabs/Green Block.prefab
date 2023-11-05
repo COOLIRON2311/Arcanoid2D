@@ -53,6 +53,7 @@ MonoBehaviour:
   points: 20
   bonuses:
   - {fileID: 5635594520570490885, guid: 28d80936b50d290468ac7650ae18706a, type: 3}
+  - {fileID: 7067357741014323116, guid: 914af59caad6c5c40b88fe22c26dd877, type: 3}
 --- !u!212 &801743939505092101
 SpriteRenderer:
   m_ObjectHideFlags: 0
