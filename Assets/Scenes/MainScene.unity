@@ -1144,6 +1144,7 @@ MonoBehaviour:
   yellowPrefab: {fileID: 420286691323532324, guid: 6e5218df4285e2b418c86d991030b589, type: 3}
   ballPrefab: {fileID: 5922678694551479059, guid: cd7afd0b5f817b3449c9ddb3fa1c4449, type: 3}
   pointSound: {fileID: 8300000, guid: 6a4b685af588dc44e92dd7d7ab0469f0, type: 3}
+  currentBalls: []
 --- !u!1 &1743872339
 GameObject:
   m_ObjectHideFlags: 0
