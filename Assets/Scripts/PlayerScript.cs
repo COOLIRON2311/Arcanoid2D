@@ -17,8 +17,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
     public AudioClip pointSound;
-    GameDataScript gameData;
-    int balls;
+    public GameDataScript gameData;
+    public int balls;
     int blocks;
     [HideInInspector]
     public List<GameObject> currentBalls = new List<GameObject>();

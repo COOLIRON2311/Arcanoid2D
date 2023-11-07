@@ -11,7 +11,20 @@ public class BlockScript : MonoBehaviour
     public int hitsToDestroy;
     public int points;
     PlayerScript ps;
-    public GameObject[] bonuses;
+
+    public GameObject fastBonus;
+    public GameObject slowBonus;
+    public GameObject ballBonus;
+    public GameObject plusTwoBonus;
+    public GameObject plusTenBonus;
+    List<GameObject> bonuses = new List<GameObject>();
+
+    public int fastBonusP;
+    public int slowBonusP;
+    public int ballBonusP;
+    public int plusTwoBonusP;
+    public int plusTenBonusP;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -21,6 +34,17 @@ public class BlockScript : MonoBehaviour
             textComp.text = hitsToDestroy.ToString();
         }
         ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+
+        for (int i = 0; i < fastBonusP; i++)
+            bonuses.Add(fastBonus);
+        for (int i = 0; i < slowBonusP; i++)
+            bonuses.Add(slowBonus);
+        for (int i = 0; i < ballBonusP; i++)
+            bonuses.Add(ballBonus);
+        for (int i = 0; i < plusTwoBonusP; i++)
+            bonuses.Add(plusTwoBonus);
+        for (int i = 0; i < plusTenBonusP; i++)
+            bonuses.Add(plusTenBonus);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -31,9 +55,9 @@ public class BlockScript : MonoBehaviour
             // print(points);
             ps.BlockDestroyed(points, registerDestroyed);
             Destroy(gameObject);
-            if (bonuses.Length > 0)
+            if (bonuses.Count > 0)
             {
-                var bonus = bonuses[Random.Range(0, bonuses.Length)];
+                var bonus = bonuses[Random.Range(0, bonuses.Count)];
                 var obj = Instantiate(bonus, gameObject.transform.position, Quaternion.identity);
                 obj.GetComponent<BonusBase>().SetPlayerScript(ps);
             }

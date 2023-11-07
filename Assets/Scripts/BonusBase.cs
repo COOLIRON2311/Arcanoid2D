@@ -9,6 +9,7 @@ public class BonusBase : MonoBehaviour
     Rigidbody2D rb2d;
     GameDataScript gameData;
     protected PlayerScript playerScript;
+    public GameObject ballPrefab;
 
     void Start()
     {
