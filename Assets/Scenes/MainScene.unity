@@ -1817,6 +1817,9 @@ MonoBehaviour:
   ballPrefab: {fileID: 5922678694551479059, guid: cd7afd0b5f817b3449c9ddb3fa1c4449, type: 3}
   menu: {fileID: 1456491069989573167}
   pointSound: {fileID: 8300000, guid: 6a4b685af588dc44e92dd7d7ab0469f0, type: 3}
+  gameData: {fileID: 0}
+  balls: 0
+  currentBalls: []
 --- !u!1 &1382454604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,7 +2627,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 5
 --- !u!224 &692877780273888302
 RectTransform:
   m_ObjectHideFlags: 0
