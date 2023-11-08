@@ -7,27 +7,25 @@ public class SoundBar : MonoBehaviour
 {
 	public bool isGlobal = false;
 
-	Slider _slider;
-	SoundMaster _soundMaster;
-	
+	Slider slider;
+
 
 	private void Start()
 	{
-		_slider = GetComponentInChildren<Slider>();
-		_soundMaster = FindObjectOfType<SoundMaster>();
+		slider = GetComponentInChildren<Slider>();
 		if (isGlobal)
-			_slider.value = _soundMaster.sfx.volume;
+			slider.value = SoundMaster.instance.bgm.volume;
 		else
-			_slider.value = _soundMaster.bgm.volume;
+			slider.value = SoundMaster.instance.sfx.volume;
 
-		_slider.onValueChanged.AddListener(delegate { sliderChanged(); });
+		slider.onValueChanged.AddListener(delegate { sliderChanged(); });
 	}
 
 	private void sliderChanged()
 	{
 		if (isGlobal)
-			_soundMaster.sfx.volume = _slider.value;
+			SoundMaster.instance.bgm.volume = slider.value;
 		else
-			_soundMaster.bgm.volume = _slider.value;
+			SoundMaster.instance.sfx.volume = slider.value;
 	}
 }

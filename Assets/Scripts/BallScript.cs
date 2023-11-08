@@ -56,7 +56,7 @@ public class BallScript : MonoBehaviour
     {
         if (gameData.sfx)
 		{
-			SoundMaster.instance.sfx.volume = gameData.sfxdValue;
+			// SoundMaster.instance.sfx.volume = gameData.sfxValue;
 			SoundMaster.instance.sfx.PlayOneShot(loseSound);
 		}
         ps.RemoveBallFromList(gameObject);
@@ -68,7 +68,7 @@ public class BallScript : MonoBehaviour
     {
         if (gameData.sfx)
 		{
-			SoundMaster.instance.sfx.volume = gameData.sfxdValue;
+			// SoundMaster.instance.sfx.volume = gameData.sfxValue;
 			SoundMaster.instance.sfx.PlayOneShot(hitSound);
 		}
     }
