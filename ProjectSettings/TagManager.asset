@@ -9,6 +9,7 @@ TagManager:
   - Block
   - Sound
   - Menu
+  - Bonus
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Ball
   - Block
-  - 
+  - Bonus
   - 
   - 
   - 
