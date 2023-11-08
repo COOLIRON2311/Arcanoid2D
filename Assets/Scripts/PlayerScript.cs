@@ -84,11 +84,13 @@ public class PlayerScript : MonoBehaviour
             { // pause game
 				menu.SetActive(true);
 				Time.timeScale = 0;
-                SoundMaster.instance.bgm.Pause();
+				Cursor.visible = true;
+				SoundMaster.instance.bgm.Pause();
             }
             else
             { // resume game
 				menu.SetActive(false);
+				Cursor.visible = false;
 				Time.timeScale = 1;
                 SoundMaster.instance.bgm.Play();
             }
