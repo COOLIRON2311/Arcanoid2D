@@ -172,8 +172,8 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 gameData.Reset();
-                SceneManager.LoadScene("MainScene");
-            }
+				SceneManager.LoadScene("Menu");
+			}
         }
     }
 

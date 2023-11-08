@@ -18,4 +18,17 @@ public class Menu : MonoBehaviour
 		SceneManager.LoadScene("MainScene");
 		Time.timeScale = 1;
 	}
+
+	public void Resume()
+	{
+		transform.parent.gameObject.SetActive(false);
+		Cursor.visible = false;
+		Time.timeScale = 1;
+		SoundMaster.instance.bgm.Play();
+	}
+
+	public void ExitGame()
+	{
+		Application.Quit();
+	}
 }
