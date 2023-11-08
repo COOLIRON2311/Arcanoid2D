@@ -26,8 +26,8 @@ public class GameDataScript : ScriptableObject
     public void Save()
     {
         PlayerPrefs.SetInt("level", level);
-		PlayerPrefs.SetFloat("bgmValue", bgmValue);
-		PlayerPrefs.SetFloat("sfxValue", sfxValue);
+		PlayerPrefs.SetFloat("bgmValue", SoundMaster.instance.bgm.volume);
+		PlayerPrefs.SetFloat("sfxValue", SoundMaster.instance.sfx.volume);
 		PlayerPrefs.SetInt("balls", balls);
         PlayerPrefs.SetInt("points", points);
         PlayerPrefs.SetInt("pointsToBall", pointsToBall);
@@ -40,13 +40,13 @@ public class GameDataScript : ScriptableObject
     {
 		bgmValue = PlayerPrefs.GetFloat("bgmValue", 0.25f);
 		sfxValue = PlayerPrefs.GetFloat("sfxValue", 1.0f);
-        SoundMaster.instance.bgm.volume = bgmValue;
-        SoundMaster.instance.sfx.volume = sfxValue;
 		level = PlayerPrefs.GetInt("level", 1);
         balls = PlayerPrefs.GetInt("balls", 6);
         points = PlayerPrefs.GetInt("points", 0);
         pointsToBall = PlayerPrefs.GetInt("pointsToBall", 0);
         bgm = PlayerPrefs.GetInt("bgm", 1) == 1;
         sfx = PlayerPrefs.GetInt("sfx", 1) == 1;
+        SoundMaster.instance.bgm.volume = bgmValue;
+        SoundMaster.instance.sfx.volume = sfxValue;
     }
 }

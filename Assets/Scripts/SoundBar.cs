@@ -8,15 +8,17 @@ public class SoundBar : MonoBehaviour
 	public bool isGlobal = false;
 
 	Slider slider;
+	GameDataScript gameData;
 
 
 	private void Start()
 	{
+		gameData = GameDataObject.instance.GameData;
 		slider = GetComponentInChildren<Slider>();
 		if (isGlobal)
-			slider.value = SoundMaster.instance.bgm.volume;
+			slider.value = gameData.bgmValue;
 		else
-			slider.value = SoundMaster.instance.sfx.volume;
+			slider.value = gameData.sfxValue;
 
 		slider.onValueChanged.AddListener(delegate { sliderChanged(); });
 	}

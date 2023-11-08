@@ -281,8 +281,8 @@ public class PlayerScript : MonoBehaviour
         SetBackGround();
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
-        CreateBlocks(bluePrefab, xMax, yMax, level / 2, 8);
-        CreateExtraBlocks(extraBluePrefab, xMax, yMax, level / 2, 8);
+        CreateBlocks(bluePrefab, xMax, yMax, level / 2 + level % 2, 4);
+        CreateExtraBlocks(extraBluePrefab, xMax, yMax, level / 2 + level % 2, 4);
         blocks += CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
         blocks += CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
         blocks += CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
