@@ -16,7 +16,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject greenPrefab;
     public GameObject yellowPrefab;
     public GameObject ballPrefab;
-    public AudioClip pointSound;
+	public GameObject menu;
+	public AudioClip pointSound;
     GameDataScript gameData;
     int balls;
     int blocks;
@@ -81,12 +82,14 @@ public class PlayerScript : MonoBehaviour
         {
             if (Time.timeScale > 0)
             { // pause game
-                Time.timeScale = 0;
+				menu.SetActive(true);
+				Time.timeScale = 0;
                 SoundMaster.instance.bgm.Pause();
             }
             else
             { // resume game
-                Time.timeScale = 1;
+				menu.SetActive(false);
+				Time.timeScale = 1;
                 SoundMaster.instance.bgm.Play();
             }
         }

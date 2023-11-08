@@ -8,7 +8,9 @@ public class GameDataScript : ScriptableObject
     public bool restoreOnStart;
     public bool bgm = true;
     public bool sfx = true;
-    public int level = 1;
+	public float bgmValue = 0.5f;
+	public float sfxdValue = 0.5f;
+	public int level = 1;
     public int balls = 6;
     public int points = 0;
     public int pointsToBall = 0;
@@ -24,7 +26,9 @@ public class GameDataScript : ScriptableObject
     public void Save()
     {
         PlayerPrefs.SetInt("level", level);
-        PlayerPrefs.SetInt("balls", balls);
+		PlayerPrefs.SetFloat("bgmValue", bgmValue);
+		PlayerPrefs.SetFloat("sfxdValue", sfxdValue);
+		PlayerPrefs.SetInt("balls", balls);
         PlayerPrefs.SetInt("points", points);
         PlayerPrefs.SetInt("pointsToBall", pointsToBall);
         PlayerPrefs.SetInt("bgm", bgm ? 1 : 0);
@@ -34,7 +38,9 @@ public class GameDataScript : ScriptableObject
 
     public void Load()
     {
-        level = PlayerPrefs.GetInt("level", 1);
+		bgmValue = PlayerPrefs.GetFloat("bgmValue");
+		sfxdValue = PlayerPrefs.GetFloat("sfxdValue");
+		level = PlayerPrefs.GetInt("level", 1);
         balls = PlayerPrefs.GetInt("balls", 6);
         points = PlayerPrefs.GetInt("points", 0);
         pointsToBall = PlayerPrefs.GetInt("pointsToBall", 0);

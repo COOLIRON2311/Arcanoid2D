@@ -55,7 +55,10 @@ public class BallScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (gameData.sfx)
-            SoundMaster.instance.sfx.PlayOneShot(loseSound);
+		{
+			SoundMaster.instance.sfx.volume = gameData.sfxdValue;
+			SoundMaster.instance.sfx.PlayOneShot(loseSound);
+		}
         Destroy(gameObject);
         ps.BallDestroyed();
     }
@@ -63,6 +66,9 @@ public class BallScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (gameData.sfx)
-            SoundMaster.instance.sfx.PlayOneShot(hitSound);
+		{
+			SoundMaster.instance.sfx.volume = gameData.sfxdValue;
+			SoundMaster.instance.sfx.PlayOneShot(hitSound);
+		}
     }
 }
