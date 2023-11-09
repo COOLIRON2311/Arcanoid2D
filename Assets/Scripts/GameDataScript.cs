@@ -15,6 +15,23 @@ public class GameDataScript : ScriptableObject
     public int points = 0;
     public int pointsToBall = 0;
 
+    public int pointsBonusP;
+    public int fastBonusP;
+    public int slowBonusP;
+    public int ballBonusP;
+    public int plusTwoBonusP;
+    public int plusTenBonusP;
+
+    public void setBonusesFrequency()
+    {
+        BlockScript.pointsBonusP = pointsBonusP;
+        BlockScript.fastBonusP = fastBonusP;
+        BlockScript.slowBonusP = slowBonusP;
+        BlockScript.ballBonusP = ballBonusP;
+        BlockScript.plusTwoBonusP = plusTwoBonusP;
+        BlockScript.plusTenBonusP = plusTenBonusP;
+    }
+
     public void Reset()
     {
         level = 1;
@@ -48,5 +65,6 @@ public class GameDataScript : ScriptableObject
         sfx = PlayerPrefs.GetInt("sfx", 1) == 1;
         SoundMaster.instance.bgm.volume = bgmValue;
         SoundMaster.instance.sfx.volume = sfxValue;
+        setBonusesFrequency();
     }
 }

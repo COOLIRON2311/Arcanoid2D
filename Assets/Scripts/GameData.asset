@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   restoreOnStart: 1
-  bgm: 1
-  sfx: 1
-  level: 1
-  balls: 6
-  points: 0
-  pointsToBall: 0
+  bgm: 0
+  sfx: 0
+  bgmValue: 0.5245703
+  sfxValue: 0.094921045
+  level: 8
+  balls: 27
+  points: 4460
+  pointsToBall: 160
+  pointsBonusP: 3
+  fastBonusP: 5
+  slowBonusP: 5
+  ballBonusP: 3
+  plusTwoBonusP: 2
+  plusTenBonusP: 1

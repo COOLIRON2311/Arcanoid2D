@@ -12,18 +12,19 @@ public class BlockScript : MonoBehaviour
     public int points;
     PlayerScript ps;
 
+    public static int pointsBonusP = 0;
+    public static int fastBonusP = 0;
+    public static int slowBonusP = 0;
+    public static int ballBonusP = 0;
+    public static int plusTwoBonusP = 0;
+    public static int plusTenBonusP = 0;
+    public GameObject pointsBonus;
     public GameObject fastBonus;
     public GameObject slowBonus;
     public GameObject ballBonus;
     public GameObject plusTwoBonus;
     public GameObject plusTenBonus;
     List<GameObject> bonuses = new List<GameObject>();
-
-    public int fastBonusP;
-    public int slowBonusP;
-    public int ballBonusP;
-    public int plusTwoBonusP;
-    public int plusTenBonusP;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -34,17 +35,24 @@ public class BlockScript : MonoBehaviour
             textComp.text = hitsToDestroy.ToString();
         }
         ps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
-
+        for (int i = 0; i < pointsBonusP; i++)
+            if (pointsBonus != null)
+                bonuses.Add(pointsBonus);
         for (int i = 0; i < fastBonusP; i++)
-            bonuses.Add(fastBonus);
+            if (fastBonus != null)
+                bonuses.Add(fastBonus);
         for (int i = 0; i < slowBonusP; i++)
-            bonuses.Add(slowBonus);
+            if (slowBonus != null)
+                bonuses.Add(slowBonus);
         for (int i = 0; i < ballBonusP; i++)
-            bonuses.Add(ballBonus);
+            if (ballBonus != null)
+                bonuses.Add(ballBonus);
         for (int i = 0; i < plusTwoBonusP; i++)
-            bonuses.Add(plusTwoBonus);
+            if (plusTwoBonus != null)
+                bonuses.Add(plusTwoBonus);
         for (int i = 0; i < plusTenBonusP; i++)
-            bonuses.Add(plusTenBonus);
+            if (plusTenBonus != null)
+                bonuses.Add(plusTenBonus);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

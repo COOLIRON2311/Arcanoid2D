@@ -51,16 +51,12 @@ MonoBehaviour:
   registerDestroyed: 1
   hitsToDestroy: 2
   points: 20
+  pointsBonus: {fileID: 1850176217817481898, guid: de8478c3956ca3443aa7b2375fc8a78a, type: 3}
   fastBonus: {fileID: 7067357741014323116, guid: 914af59caad6c5c40b88fe22c26dd877, type: 3}
   slowBonus: {fileID: 5635594520570490885, guid: 28d80936b50d290468ac7650ae18706a, type: 3}
   ballBonus: {fileID: 7067357741014323116, guid: 278e1051511214043b0e042085f0514d, type: 3}
   plusTwoBonus: {fileID: 7067357741014323116, guid: 6c83df2b17608c849a1caa39718892f4, type: 3}
   plusTenBonus: {fileID: 7067357741014323116, guid: 31f79c84db235bb41a95b8774804e3ea, type: 3}
-  fastBonusP: 5
-  slowBonusP: 5
-  ballBonusP: 3
-  plusTwoBonusP: 2
-  plusTenBonusP: 1
 --- !u!212 &801743939505092101
 SpriteRenderer:
   m_ObjectHideFlags: 0
