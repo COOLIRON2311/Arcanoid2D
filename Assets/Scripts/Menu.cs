@@ -5,15 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+	GameDataScript gameData;
+
+	void Start()
+	{
+		gameData = GameDataObject.instance.GameData;
+		gameData.Load();
+	}
+
 	public void StartGame()
 	{
 		SceneManager.LoadScene("MainScene");
+		gameData.Save();
 	}
 
 	public void NewGame()
 	{
-
-		var gameData = GameDataObject.instance.GameData;
 		gameData.Reset();
 		SceneManager.LoadScene("MainScene");
 		Time.timeScale = 1;
